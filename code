@@ -1,0 +1,27 @@
+import pandas as pd
+import streamlit as st
+
+# Read the data from your dataset file
+dataset_file_path = r"C:\Users\ASUS\Downloads\ams data 2\Madhya Pradesh\Cow_Milk_Unit_Price 1.xlsx"
+df = pd.read_excel(dataset_file_path)
+
+# Define the columns to include in the dashboard
+columns_to_include = ['HHID', 'Prod_Qty_Q6101', 'Sale_Qty_Q6101', 'Sale_Unit_Q6101',
+                      'Sale_Value_Q6101', 'Unit_Price_Q6101', 'Prod_Value_Q6101',
+                      'Q6101O', 'Prod_Cost_Q6101', 'Cow_Milk_Income',
+                      'INTNAME', 'SUPNAME', 'Q11', 'Q12', 'sector', 'PARENT_KEY']
+
+# Define the Streamlit app
+def main():
+    # Render the initial dashboard UI
+    unique_parent_keys = df['PARENT_KEY'].unique()
+    selected_parent_key = st.selectbox("PARENT_KEY", unique_parent_keys)
+    
+    # Filter the dataframe based on the selected PARENT_KEY value
+    selected_data = df[df['PARENT_KEY'] == selected_parent_key][columns_to_include]
+    
+    # Display the selected data as a table
+    st.table(selected_data)
+
+if __name__ == '__main__':
+    main()
