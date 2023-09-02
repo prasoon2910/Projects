@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
-
-
-pip install yfinance
-
-
 # In[7]:
 
 
